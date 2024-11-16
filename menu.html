@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background: #25D366;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background: #20b858;
+        }
+    </style>
+</head>
+<body>
+    <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        
+        <label for="contact">Contact Number:</label>
+        <input type="tel" id="contact" name="contact" placeholder="Enter your contact number" required>
+        
+        <button type="submit">Send to WhatsApp</button>
+    </form>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const contact = document.getElementById('contact').value.trim();
+
+            // Validate inputs
+            if (!name || !contact) {
+                alert('Please fill out both fields.');
+                return;
+            }
+
+            // WhatsApp API integration
+            const whatsappNumber = '9238023903'; // Replace with your WhatsApp number
+            const message = `My name is ${name} and ${contact} is my contact number.`;
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+            // Open WhatsApp with pre-filled message
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
